@@ -1,9 +1,9 @@
-import { IOrganizationRepository } from '../../domain/repositories/organization.repository.interface';
+import { IUserRepository } from '../../domain/repositories/user.repository.interface';
 import { AuthService } from '../services/auth.service';
 
 export class LoginUseCase {
   constructor(
-    private readonly organizationRepository: IOrganizationRepository,
+    private readonly userRepository: IUserRepository,
     private readonly authService: AuthService,
   ) {}
 
@@ -11,21 +11,21 @@ export class LoginUseCase {
     email: string,
     password: string,
   ): Promise<{ accessToken: string }> {
-    const organization = await this.organizationRepository.findByEmail(email);
-    if (!organization) {
+    const user = await this.userRepository.findByEmail(email);
+    if (!user) {
       throw new Error('Invalid credentials');
     }
     const passwordValid = await this.authService.comparePasswords(
       password,
-      organization.password,
+      user.password,
     );
     if (!passwordValid) {
       throw new Error('Invalid credentials');
     }
     const payload = {
-      sub: organization.idOrganization,
-      email: organization.email,
-      role: organization.roleOrganization,
+      sub: user.idUser,
+      email: user.email,
+      role: user.role,
     };
     const accessToken = await this.authService.generateToken(payload);
     return { accessToken };

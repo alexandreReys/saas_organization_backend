@@ -4,14 +4,14 @@ import { JwtModule } from '@nestjs/jwt';
 import { AppController } from './app.controller';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { AppService } from './app.service';
-import { OrganizationController } from './presentation/controllers/organization.controller';
+import { UserController } from './presentation/controllers/user.controller';
 import { PrismaService } from './infrastructure/database/prisma.service';
-import { OrganizationPrismaRepository } from './infrastructure/repositories/organization-prisma.repository';
-import { CreateOrganizationUseCase } from './application/use-cases/create-organization.usecase';
-import { FindAllOrganizationsUseCase } from './application/use-cases/find-all-organizations.usecase';
-import { FindOrganizationByIdUseCase } from './application/use-cases/find-organization-by-id.usecase';
-import { UpdateOrganizationUseCase } from './application/use-cases/update-organization.usecase';
-import { DeleteOrganizationUseCase } from './application/use-cases/delete-organization.usecase';
+import { UserPrismaRepository } from './infrastructure/repositories/user-prisma.repository';
+import { CreateUserUseCase } from './application/use-cases/create-user.usecase';
+import { FindAllUsersUseCase } from './application/use-cases/find-all-users.usecase';
+import { FindUserByIdUseCase } from './application/use-cases/find-user-by-id.usecase';
+import { UpdateUserUseCase } from './application/use-cases/update-user.usecase';
+import { DeleteUserUseCase } from './application/use-cases/delete-user.usecase';
 import { AuthService } from './application/services/auth.service';
 import { LoginUseCase } from './application/use-cases/login.usecase';
 import { AuthController } from './presentation/controllers/auth.controller';
@@ -37,19 +37,19 @@ import { AuthController } from './presentation/controllers/auth.controller';
       ],
     }),
   ],
-  controllers: [AppController, OrganizationController, AuthController],
+  controllers: [AppController, UserController, AuthController],
   providers: [
     AppService,
     PrismaService,
     {
-      provide: 'IOrganizationRepository',
-      useClass: OrganizationPrismaRepository,
+      provide: 'IUserRepository',
+      useClass: UserPrismaRepository,
     },
-    CreateOrganizationUseCase,
-    FindAllOrganizationsUseCase,
-    FindOrganizationByIdUseCase,
-    UpdateOrganizationUseCase,
-    DeleteOrganizationUseCase,
+    CreateUserUseCase,
+    FindAllUsersUseCase,
+    FindUserByIdUseCase,
+    UpdateUserUseCase,
+    DeleteUserUseCase,
     AuthService,
     LoginUseCase,
   ],

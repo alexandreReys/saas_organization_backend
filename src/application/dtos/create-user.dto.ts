@@ -6,7 +6,7 @@ import {
   IsBoolean,
 } from 'class-validator';
 
-export class CreateOrganizationDto {
+export class CreateUserDto {
   @IsEmail()
   @IsNotEmpty()
   email: string;
@@ -17,13 +17,13 @@ export class CreateOrganizationDto {
 
   @IsString()
   @IsNotEmpty()
-  nameOrganization: string;
+  name: string;
 
   @IsString()
   @IsOptional()
-  roleOrganization?: string;
+  role?: string;
 
   @IsBoolean()
   @IsOptional()
-  statusOrganization?: boolean;
+  status?: boolean;
 }

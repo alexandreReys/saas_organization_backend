@@ -10,15 +10,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Organization {
-  idOrganization     Int      @id @default(autoincrement()) @map("id_organization")
-  email              String   @unique
-  password           String
-  nameOrganization   String   @map("name_organization")
-  roleOrganization   String   @default("admin") @map("role_organization")
-  statusOrganization Boolean  @default(true) @map("status_organization")
-  createdAt          DateTime @default(now()) @map("created_at")
-  updatedAt          DateTime @updatedAt @map("updated_at")
+model User {
+  idUser     Int      @id @default(autoincrement()) @map("id_user")
+  email      String   @unique
+  password   String
+  name       String   @map("name")
+  role       String   @default("admin") @map("role")
+  status     Boolean  @default(true) @map("status")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
 
-  @@map("organization")
+  @@map("users")
 }
