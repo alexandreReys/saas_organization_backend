@@ -12,7 +12,7 @@
 ## 3. Segurança
 
 - OK Configurar CORS
-- Adicionar rate limiting
+- OK Adicionar rate limiting
 -       PENDENTE    Usar Helmet para headers de segurança
 -       PENDENTE    Garantir que variáveis sensíveis estão no `.env`
 -       PENDENTE    Revisar permissões e roles (se multi-usuário)
